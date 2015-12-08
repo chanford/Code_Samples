@@ -8,8 +8,9 @@ tablefiles are located in the "grading" directory
 test.sh is a script modified from the grading scirpt which has more detailed examples of running the program
 
 .c/.h Files:
+AES, performs AES encryption and decryption
 Inverse, finds the inverse of a polynomial
 KeyExpand, takes an inputted key and generates the sub-keys used by AES
+Main, handles command line parameters
 ModProd, finds the modular product of 2 polynpmials
 TableCheck, checks a TableFile to verify that the contained tables are valid for use with AES
-AES, performs AES encryption and decryption
