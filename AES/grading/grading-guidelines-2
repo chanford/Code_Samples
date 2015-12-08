@@ -1,0 +1,296 @@
+Grading Guideline for HW6
+=========================
+
+Total points: 100
+
++---------------------+
+| General Guidelines: |
++---------------------+
+
+1) The points below are maximum points.  Partial credits may be given.
+
+2) Do the "plus points" first, then do the "minus points".
+
+3) Please read the student's README first to see if you need to do something
+   different to get their code to work and what the known problems are.
+
+4) The scripts below are for csh/tcsh.  If you use bash, please modify
+   them where necessary.  Or, you can do "tcsh" and then run the scripts.
+
+5) The grading is meant to be harsh!  So, if running the "diff" command
+   suppose to produce no output, but the student's code produces some
+   output, take points off accordingly.  Similarly, if running the "diff"
+   command suppose to produce some output, but the student's code
+   produces no output, take points off accordingly. The only values that 
+   are allowed to be different are the "real values".
+
+6) The posted grading guidelines is not perfect.  We will try our best to
+   stick to the grading guidelines.  Sometimes, after we started grading
+   some of the submissions, we realize that we missed something (most often
+   in "minus points").  The bottomline is that we reserve the right to add
+   or change things in the grading guidelines as we see fit.
+
++--------------+
+| Plus points: |
++--------------+
+ 
+Documentation    : +3 points (comments in code plus README)
+
+set k0=ad770a62ac6757f9566e32ff3327a018
+set k1=3ba128fa611a878e96e46fa83b13d2aa
+set k2=62316dfeb674a44b4c8015118aa6ff89
+set k3=1bf772fbd2089ef957ba56e681ec1433
+set k4=e8afa3166ebe97d0c80e50d041087e20
+set k5=a0c309e4a7f3eba8877def12e9637301
+set k6=d28504a2d34b03135cd157cbb77fbdfb
+set k7=07529c4dddda5aaaa2a9a6ac857f7ce3
+set k8=90391d3ef53e4f094968a3958715e31e
+set k9=23fd0b81c37bc9f40a7a005a21afa749
+
+set p10=5d2d6e0b
+set p11=bedce669
+set p12=3a1ad958
+set p13=cbae1527
+set p14=43355b79
+set p15=8e107fe1
+set p16=0d0137ec
+set p17=0554537f
+set p18=174e197a
+set p19=ace0da06
+
+set p20=9ced2e6d
+set p21=4fd76983
+set p22=0fba5c51
+set p23=d9ebbe77
+set p24=43668704
+set p25=dbe9828e
+set p26=0d9fe647
+set p27=b549eba6
+set p28=82d7bff4
+set p29=d9555315
+
+set p0=44b10f07
+set p1=38b09f18
+set p2=d5e44e06
+set p3=bf4c3fe2
+set p4=4ac6fcaa
+set p5=12b6929f
+set p6=3ecd9e39
+set p7=d7b9d0a3
+set p8=81f06f4f
+set p9=76d76bc2
+
+(A) tablecheck (+9 points, +1 points for each correct case)
+	Note: should generate no output
+
+	set srcdir=~csci531/public/cs531/hw6
+
+	foreach f (0 1 2 3 4 5 6 7 8)
+		echo "==> $srcdir/f$f.tbl"
+		./hw6 tablecheck -t=$srcdir/f$f.tbl
+	end
+
+(B) modprod (+18 points, +2 for each correct answer)
+
+	set srcdir=~csci531/public/cs531/hw6
+	/bin/rm -f f?.mp
+
+        ./hw6 modprod -p1=$p10 -p2=$p20 > f0.mp
+        ./hw6 modprod -p1=$p11 -p2=$p21 > f1.mp
+        ./hw6 modprod -p1=$p12 -p2=$p22 > f2.mp
+        ./hw6 modprod -p1=$p13 -p2=$p23 > f3.mp
+        ./hw6 modprod -p1=$p14 -p2=$p24 > f4.mp
+        ./hw6 modprod -p1=$p15 -p2=$p25 > f5.mp
+        ./hw6 modprod -p1=$p16 -p2=$p26 > f6.mp
+        ./hw6 modprod -p1=$p17 -p2=$p27 > f7.mp
+        ./hw6 modprod -p1=$p18 -p2=$p28 > f8.mp
+
+	foreach f (0 1 2 3 4 5 6 7 8)
+		echo "==> $srcdir/f$f.mp"
+		diff f$f.mp $srcdir/f$f.mp
+	end
+
+	/bin/rm -f f?.mp
+
+(C) keyexpand (+10 points, +1 for each correct answer)
+
+	set srcdir=~csci531/public/cs531/hw6
+	/bin/rm -f f?.ke
+
+	./hw6 keyexpand -k=$k0 -t=$srcdir/f0.tbl > f0.ke
+	./hw6 keyexpand -k=$k1 -t=$srcdir/f1.tbl > f1.ke
+	./hw6 keyexpand -k=$k2 -t=$srcdir/f2.tbl > f2.ke
+	./hw6 keyexpand -k=$k3 -t=$srcdir/f3.tbl > f3.ke
+	./hw6 keyexpand -k=$k4 -t=$srcdir/f4.tbl > f4.ke
+	./hw6 keyexpand -k=$k5 -t=$srcdir/f5.tbl > f5.ke
+	./hw6 keyexpand -k=$k6 -t=$srcdir/f6.tbl > f6.ke
+	./hw6 keyexpand -k=$k7 -t=$srcdir/f7.tbl > f7.ke
+	./hw6 keyexpand -k=$k8 -t=$srcdir/f8.tbl > f8.ke
+	./hw6 keyexpand -k=$k9 -t=$srcdir/f9.tbl > f9.ke
+
+	foreach f (0 1 2 3 4 5 6 7 8 9)
+		echo "==> $srcdir/f$f.ke"
+		diff f$f.ke $srcdir/f$f.ke
+	end
+
+	/bin/rm -f f?.ke
+
+(D) encrypt (+20 points, +2 for each correct answer)
+
+        set srcdir=~csci531/public/cs531/hw6
+	/bin/rm -f f?.enc
+
+	./hw6 encrypt -k=$k0 -t=$srcdir/f0.tbl $srcdir/f0 > f0.enc
+	./hw6 encrypt -k=$k1 -t=$srcdir/f1.tbl $srcdir/f1 > f1.enc
+	./hw6 encrypt -k=$k2 -t=$srcdir/f2.tbl $srcdir/f2 > f2.enc
+	./hw6 encrypt -k=$k3 -t=$srcdir/f3.tbl $srcdir/f3 > f3.enc
+	./hw6 encrypt -k=$k4 -t=$srcdir/f4.tbl $srcdir/f4 > f4.enc
+
+	cat $srcdir/f5 | ./hw6 encrypt -k=$k5 -t=$srcdir/f5.tbl > f5.enc
+	cat $srcdir/f6 | ./hw6 encrypt -k=$k6 -t=$srcdir/f6.tbl > f6.enc
+	cat $srcdir/f7 | ./hw6 encrypt -k=$k7 -t=$srcdir/f7.tbl > f7.enc
+	cat $srcdir/f8 | ./hw6 encrypt -k=$k8 -t=$srcdir/f8.tbl > f8.enc
+	cat $srcdir/f9 | ./hw6 encrypt -k=$k9 -t=$srcdir/f9.tbl > f9.enc
+
+	foreach f (0 1 2 3 4 5 6 7 8 9)
+		echo "==> $srcdir/f$f.enc"
+		diff f$f.enc $srcdir/f$f.enc
+	end
+
+	/bin/rm -f f?.enc
+
+(E) decrypt (+20 points, +2 for each correct answer)
+
+        set srcdir=~csci531/public/cs531/hw6
+	/bin/rm -f f?.dec
+
+	./hw6 decrypt -k=$k0 -t=$srcdir/f0.tbl $srcdir/f0 > f0.dec
+	./hw6 decrypt -k=$k1 -t=$srcdir/f1.tbl $srcdir/f1 > f1.dec
+	./hw6 decrypt -k=$k2 -t=$srcdir/f2.tbl $srcdir/f2 > f2.dec
+	./hw6 decrypt -k=$k3 -t=$srcdir/f3.tbl $srcdir/f3 > f3.dec
+	./hw6 decrypt -k=$k4 -t=$srcdir/f4.tbl $srcdir/f4 > f4.dec
+
+	cat $srcdir/f5 | ./hw6 decrypt -k=$k5 -t=$srcdir/f5.tbl > f5.dec
+	cat $srcdir/f6 | ./hw6 decrypt -k=$k6 -t=$srcdir/f6.tbl > f6.dec
+	cat $srcdir/f7 | ./hw6 decrypt -k=$k7 -t=$srcdir/f7.tbl > f7.dec
+	cat $srcdir/f8 | ./hw6 decrypt -k=$k8 -t=$srcdir/f8.tbl > f8.dec
+	cat $srcdir/f9 | ./hw6 decrypt -k=$k9 -t=$srcdir/f9.tbl > f9.dec
+
+	foreach f (0 1 2 3 4 5 6 7 8 9)
+		echo "==> $srcdir/f$f"
+		diff f$f.dec $srcdir/f$f.dec
+	end
+
+	/bin/rm -f f?.dec
+
+(F) inverse (+20 points, +2 for each correct answer)
+
+	set srcdir=~csci531/public/cs531/hw6
+	/bin/rm -f f?.inv
+
+        ./hw6 inverse -p=$p0 > f0.inv
+        ./hw6 inverse -p=$p1 > f1.inv
+        ./hw6 inverse -p=$p2 > f2.inv
+        ./hw6 inverse -p=$p3 > f3.inv
+        ./hw6 inverse -p=$p4 > f4.inv
+        ./hw6 inverse -p=$p5 > f5.inv
+        ./hw6 inverse -p=$p6 > f6.inv
+        ./hw6 inverse -p=$p7 > f7.inv
+        ./hw6 inverse -p=$p8 > f8.inv
+        ./hw6 inverse -p=$p9 > f9.inv
+
+	foreach f (0 1 2 3 4 5 6 7 8 9)
+		echo "==> $srcdir/f$f.inv"
+		diff f$f.inv $srcdir/f$f.inv
+	end
+
+	/bin/rm -f f?.inv
+
++---------------+
+| Minus points: |
++---------------+
+
+Missing README file : -1 points (even if lots of comments in code)
+                      (Document+this cannot go negative)
+
+Improper citation   : -5 points
+                      for code obtained from a public source, the right place
+                          to cite the source is right next to the code
+
+Cannot compile      : -5 to -10, depending on effort to make it work
+                      if cannot generate executable, at least 5 points
+                          will be taken off, up to 10 points off if it
+                          takes a lot to make it work
+
+Compiler warnings   : -1 to -3
+                      if using gcc/g++, make sure -Wall flag is used
+                      please take 1 point off for 1-4 warnings,
+                      2 points off for 5-8 warnings, 3 points for more
+
+"make clean"        : -2 point if it does not work correctly
+
+Segmentation faults : -10 points
+                if you see a seg fault (or bus error) any time during your
+                    testing of the code, if it's fairly repeatable, deduct 10
+                    points, if it's intermittent, deduct less, depending on
+                    how often you see the seg fault
+
+Separate compilation : -10 points
+                if the executable is compiled with a single line, deduct
+                    all 10 points
+                if the executable is a single module, but generates hw1.o and
+                    then link to create the executable in line one, deduct 5
+                    points
+                if most of the code are in .h files, deduct all 10 points
+
+Bad commandline : -1 point each for each not handling properly
+                # need some sort of error output to indicate that the command
+                #     cannot be completed, it does not have to exactly the
+                #     error indicated below, just something reasonable to inform
+                #     the user about the error condition
+                # please note that commandline parsing is separate from
+                #     other functionalities, so even though a student has
+                #     declared that certain part of the assignments is not
+                #     imlemented, commandling parsing still needs to be done
+                #     for those commands
+                ./hw6
+                    (malformed command)
+                ./hw6 tablecheck -t=$srcdir/f200.tbl
+                    (invalid S-box, wrong number of entries)
+                ./hw6 tablecheck -t=$srcdir/f201.tbl
+                    (invalid S-box, repeated entries)
+                ./hw6 tablecheck -t=$srcdir/f202.tbl
+                    (invalid P, too many terms in the poly)
+                ./hw6 tablecheck -t=$srcdir/f203.tbl
+                    (missing INVP)
+                ./hw6 tablecheck -t=$srcdir/f204.tbl
+                    (invalid characters in INVP)
+		./hw6 modprod -p1=a403e5bf
+                    (malformed command)
+		set k0=c0ec442dfea83c54620fa12e1df2d66c
+		set k1=a796938514f5a652789c20f1c011b747
+		set k2=eed3d84d3e7df891f5b27f96778b1ee0
+		set k3=d93f470073789ee7e136ebcdc7655d80
+		set k4=3271ae586cd7f2d56eab1ee373414e97
+		set k10=b1b791b2b7284b052fac505989f1554
+		./hw6 keyexpand -k=$k10 -t=$srcdir/f0.tbl
+                    (bad key, not enough characters)
+                ./hw6 encrypt -k=$k0 -t=/home/scf-22/csci531/_login
+                    (cannot open table file)
+                ./hw6 encrypt -k=$k0 -t=/etc/passwd
+                    (malformed table file)
+                ./hw6 decrypt -k=$k1 -t=/home/scf-22/csci531/_login
+                    (cannot open table file)
+                ./hw6 decrypt -k=$k1 -t=/etc/passwd
+                    (malformed table file)
+		./hw6 inverse -p=a403e5bf22
+                    (bad poly)
+		./hw6 inverse -p=a4z3e5bf
+                    (invalid poly)
+
+Improper citation : -20 points
+                #
+                # this is only for the case that MOSS has found matched code
+                # and the studet did not cite downloaded/copied code properly
+                #
+

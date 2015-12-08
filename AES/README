@@ -1,0 +1,8 @@
+Code that performs AES encryption/decryption
+to compile: make hw6
+usage:
+hw6 encrypt -k=key -t=tablefile [file]
+hw6 decrypt -k=key -t=tablefile [file]
+
+tablefiles are located in the "grading" directory
+test.sh is a script modified from the grading scirpt which has more detailed examples of running the program
