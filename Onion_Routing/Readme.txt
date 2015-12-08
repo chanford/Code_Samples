@@ -7,3 +7,11 @@ In that vm, pings to a certain ip range would be sent into a tunnel to my Proxy 
 
 projb/ contains the code I wrote
 the sampleout directories contain samples of what the Proxy and routers would log during hte program's operation, detailing their communicaitons with the other routers and proxy.
+
+.h/.cpp files:
+Circuit, Storage class for Routers to remember connections with
+Minitor, generates packet headers and communication apckets used by routers
+Proxy, first recipient of pings from user's shell, spawns routers and communicates with them in order to set up Onion circuit.
+Main, spawns a proxy
+Router, Onion router that communicates with the proxy and other routers to set up its hop of the circuit. If it is hte last hop, sends/receives ping packets with the Internet.
+aesF, performs AES encryption on packets so that the onion network can have encrypted communications
